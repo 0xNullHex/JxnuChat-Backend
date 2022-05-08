@@ -24,10 +24,7 @@ public class UserCrudService{
     }
 
     public UserEntity getUserByUsername(String username){
-        return userRepository.findAll().stream()
-                .filter(userEntity -> userEntity.getUsername().equals(username))
-                .findFirst()
-                .orElseThrow(()->new IllegalStateException(String.format("%s not found",username)));
+        return userRepository.findByUsername(username);
     }
 
     public boolean updateUser(int Id,String username,String password){
