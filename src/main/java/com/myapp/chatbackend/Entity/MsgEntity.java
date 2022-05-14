@@ -9,7 +9,7 @@ import java.util.Date;
 
 
 @Entity
-@Table
+@Table(name = "chat_messages_table")
 public class MsgEntity {
         @Id
         private Long id;

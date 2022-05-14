@@ -23,7 +23,7 @@ public class RoomService{
             Long fromId, Long toId, boolean createIfNotExist) {
 
         return roomRepository
-                .findByIds(fromId, toId)
+                .findByFromIdAndToId(fromId, toId)
                 .map(RoomEntity::getMsgId)
                 .or(() -> {
                     if(!createIfNotExist) {

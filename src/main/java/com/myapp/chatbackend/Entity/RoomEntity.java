@@ -2,9 +2,11 @@ package com.myapp.chatbackend.Entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 
 @Entity
+@Table(name = "chat_rooms_table")
 public class RoomEntity {
         @Id
         private Long id;
