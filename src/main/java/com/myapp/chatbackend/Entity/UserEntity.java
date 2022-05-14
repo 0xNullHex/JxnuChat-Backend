@@ -1,4 +1,4 @@
-package com.myapp.chatbackend.User;
+package com.myapp.chatbackend.Entity;
 
 
 import javax.persistence.*;

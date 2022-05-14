@@ -1,5 +1,6 @@
-package com.myapp.chatbackend.User;
+package com.myapp.chatbackend.Service;
 
+import com.myapp.chatbackend.Entity.UserEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

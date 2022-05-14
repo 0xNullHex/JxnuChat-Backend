@@ -1,6 +1,6 @@
-package com.myapp.chatbackend.User;
+package com.myapp.chatbackend.Interface;
 
-import com.myapp.chatbackend.User.UserEntity;
+import com.myapp.chatbackend.Entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

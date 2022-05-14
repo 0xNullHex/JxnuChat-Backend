@@ -1,6 +1,8 @@
-package com.myapp.chatbackend.User;
+package com.myapp.chatbackend.Service;
 
 
+import com.myapp.chatbackend.Entity.UserEntity;
+import com.myapp.chatbackend.Interface.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

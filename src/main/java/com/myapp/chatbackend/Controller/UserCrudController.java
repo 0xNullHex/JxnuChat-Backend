@@ -1,6 +1,8 @@
-package com.myapp.chatbackend.User;
+package com.myapp.chatbackend.Controller;
 
 
+import com.myapp.chatbackend.Entity.UserEntity;
+import com.myapp.chatbackend.Service.UserCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
