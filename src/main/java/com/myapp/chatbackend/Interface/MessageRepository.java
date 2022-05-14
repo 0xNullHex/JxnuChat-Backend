@@ -9,9 +9,9 @@ import java.util.List;
 
 public interface MessageRepository extends JpaRepository<MsgEntity,Long> {
 
-    long countByPartnersIdAndStatus(Long fromId, Long toId, DeliveryStatus status);
+    long countByFromIdAndToIdAndStatus(Long fromId, Long toId, DeliveryStatus status);
 
     @Query("select m from MsgEntity m where m.fromId= ?1 and m.toId= ?2")
-    MsgEntity findByPartnersIds(Long fromId, Long toId);
-    List<MsgEntity> findByMsgId(String msgId);
+    MsgEntity findByFromIdAndToId(Long fromId, Long toId);
+    List<MsgEntity> findByMsgId(Long msgId);
 }

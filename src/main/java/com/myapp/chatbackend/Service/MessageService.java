@@ -34,13 +34,13 @@ public class MessageService {
         }
 
         public long countNewMessages(Long fromId, Long toId) {
-            return messageRepository.countByPartnersIdAndStatus(fromId, toId, DeliveryStatus.READ);
+            return messageRepository.countByFromIdAndToIdAndStatus(fromId, toId, DeliveryStatus.READ);
         }
 
         public List<MsgEntity> findMessages(Long fromId, Long toId) {
             Optional<String> msgId = roomService.getMsgId(fromId, toId, false);
 
-            List<MsgEntity> messages = msgId.map(id -> messageRepository.findByMsgId(id)).orElse(new ArrayList<>());
+            List<MsgEntity> messages = msgId.map(id -> messageRepository.findByMsgId(Long.valueOf(id))).orElse(new ArrayList<>());
 
             if(messages.size() > 0) {
                 updateStatuses(fromId, toId, DeliveryStatus.SENT);
@@ -62,7 +62,7 @@ public class MessageService {
 
         public void updateStatuses(Long fromId, Long toId, DeliveryStatus status) {
 
-            MsgEntity msgEntity= messageRepository.findByPartnersIds(fromId,toId);
+            MsgEntity msgEntity= messageRepository.findByFromIdAndToId(fromId,toId);
             msgEntity.setStatus(status);
             messageRepository.save(msgEntity);
 
