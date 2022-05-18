@@ -16,20 +16,27 @@ public class UserCrudController {
 
     private UserCrudService userCrudService;
 
-    @Autowired
     public PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserCrudController(UserCrudService userCrudService) {
+    public UserCrudController(UserCrudService userCrudService, PasswordEncoder passwordEncoder) {
         this.userCrudService = userCrudService;
+        this.passwordEncoder = passwordEncoder;
     }
 
+
+
     @PostMapping("register")
-    public String registerUser(@RequestParam("username") String username,@RequestParam("password") String password){
-        UserEntity user=new UserEntity(username,passwordEncoder.encode(password));
+    public String registerUser(@RequestParam("username") String username,@RequestParam("password") String password,@RequestParam("email") String email){
+        UserEntity user=new UserEntity(username,passwordEncoder.encode(password),email);
         userCrudService.saveUser(user);
         return user.toString();
 
+    }
+
+    @PostMapping("login")
+    public String login(){
+        return "done";
     }
 
     @GetMapping("user/get/{id}")
