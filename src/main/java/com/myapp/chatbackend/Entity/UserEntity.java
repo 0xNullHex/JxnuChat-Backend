@@ -1,11 +1,17 @@
 package com.myapp.chatbackend.Entity;
 
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "users_table")
+@NoArgsConstructor
+@Setter
+@Getter
+@ToString
 public class UserEntity {
 
     @Id
@@ -13,20 +19,17 @@ public class UserEntity {
     private int id;
 
     @Column(unique=true)
+    @NonNull
     private String username;
 
     @Column()
+    @NonNull
     private String password;
 
+    @Column(unique=true)
+    @NonNull
     private String email;
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public UserEntity(String username, String password, String email) {
         this.username = username;
@@ -34,33 +37,6 @@ public class UserEntity {
         this.email = email;
     }
 
-    public UserEntity() {
-
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -75,13 +51,4 @@ public class UserEntity {
         return Objects.hash(id, username, password);
     }
 
-    @Override
-    public String toString() {
-        return "UserEntity{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                '}';
-    }
 }
