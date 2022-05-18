@@ -33,7 +33,7 @@ public class UserCrudController {
         try {
             UserEntity user = new UserEntity(userBody.getUsername(), passwordEncoder.encode(userBody.getPassword()), userBody.getEmail());
             userCrudService.saveUser(user);
-            return user.toString();
+            return "{\"message\":\"Successfully Registered\"}";
         }
         catch (DataIntegrityViolationException e){
             return "{\"message\":\"Username Or Email already exists\"}";
