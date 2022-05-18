@@ -5,6 +5,7 @@ import com.myapp.chatbackend.Entity.UserEntity;
 import com.myapp.chatbackend.Payload.UserRegistrationPayload;
 import com.myapp.chatbackend.Service.UserCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,9 +30,14 @@ public class UserCrudController {
 
     @PostMapping(value = "register")
     public String registerUser(@RequestBody UserRegistrationPayload userBody){
-        UserEntity user=new UserEntity(userBody.getUsername(),passwordEncoder.encode(userBody.getPassword()),userBody.getEmail());
-        userCrudService.saveUser(user);
-        return user.toString();
+        try {
+            UserEntity user = new UserEntity(userBody.getUsername(), passwordEncoder.encode(userBody.getPassword()), userBody.getEmail());
+            userCrudService.saveUser(user);
+            return user.toString();
+        }
+        catch (DataIntegrityViolationException e){
+            return "{\"message\":\"Username Or Email already exists\"}";
+        }
 
     }
 
