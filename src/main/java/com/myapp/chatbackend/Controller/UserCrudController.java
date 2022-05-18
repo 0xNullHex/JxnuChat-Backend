@@ -2,6 +2,7 @@ package com.myapp.chatbackend.Controller;
 
 
 import com.myapp.chatbackend.Entity.UserEntity;
+import com.myapp.chatbackend.Payload.UserRegistrationPayload;
 import com.myapp.chatbackend.Service.UserCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,9 +27,9 @@ public class UserCrudController {
 
 
 
-    @PostMapping("register")
-    public String registerUser(@RequestParam("username") String username,@RequestParam("password") String password,@RequestParam("email") String email){
-        UserEntity user=new UserEntity(username,passwordEncoder.encode(password),email);
+    @PostMapping(value = "register")
+    public String registerUser(@RequestBody UserRegistrationPayload userBody){
+        UserEntity user=new UserEntity(userBody.getUsername(),passwordEncoder.encode(userBody.getPassword()),userBody.getEmail());
         userCrudService.saveUser(user);
         return user.toString();
 
