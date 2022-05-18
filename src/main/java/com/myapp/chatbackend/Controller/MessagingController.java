@@ -17,12 +17,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class MessagingController {
 
-    @Autowired
+
     private SimpMessagingTemplate messagingTemplate;
-    @Autowired
     private MessageService messageService;
-    @Autowired
     private RoomService roomService;
+
+    @Autowired
+    public MessagingController(SimpMessagingTemplate messagingTemplate, MessageService messageService, RoomService roomService) {
+        this.messagingTemplate = messagingTemplate;
+        this.messageService = messageService;
+        this.roomService = roomService;
+    }
 
     @MessageMapping("/chat")
     public void processMessage(@Payload MsgEntity message) {
