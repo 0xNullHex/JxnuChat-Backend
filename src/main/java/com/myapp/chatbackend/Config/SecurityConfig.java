@@ -1,4 +1,4 @@
-package com.myapp.chatbackend.Security;
+package com.myapp.chatbackend.Config;
 
 
 import com.myapp.chatbackend.Jwt.JwtUsernamePasswordAuthenticationFilter;
@@ -23,12 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 
-    private DataSource dataSource;
 
-    @Autowired
-    public SecurityConfig(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
 
     @Bean
     public UserDetailsService userDetailsService() {
