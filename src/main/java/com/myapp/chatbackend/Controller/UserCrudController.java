@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
 
+//TODO: review Cross Origins
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/")
 public class UserCrudController {
