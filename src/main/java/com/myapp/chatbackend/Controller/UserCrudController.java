@@ -6,6 +6,8 @@ import com.myapp.chatbackend.Payload.UserRegistrationPayload;
 import com.myapp.chatbackend.Service.UserCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +20,7 @@ import javax.persistence.EntityNotFoundException;
 public class UserCrudController {
 
 
-    private UserCrudService userCrudService;
+    private final UserCrudService userCrudService;
 
     public PasswordEncoder passwordEncoder;
 
@@ -30,18 +32,21 @@ public class UserCrudController {
 
 
 
+
+
     @PostMapping(value = "register")
-    public String registerUser(@RequestBody UserRegistrationPayload userBody){
+    public ResponseEntity<String> registerUser(@RequestBody UserRegistrationPayload userBody){
         try {
             UserEntity user = new UserEntity(userBody.getUsername(), passwordEncoder.encode(userBody.getPassword()), userBody.getEmail());
             userCrudService.saveUser(user);
-            return "{\"message\":\"Successfully Registered\"}";
+            return ResponseEntity.status(HttpStatus.OK).body("{\"message\":\"Successfully Registered\"}");
         }
         catch (DataIntegrityViolationException e){
-            return "{\"message\":\"Username Or Email already exists\"}";
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"message\":\"Username Or Email already exists\"}");
         }
 
     }
+
 
     @PostMapping("login")
     public String login(){
