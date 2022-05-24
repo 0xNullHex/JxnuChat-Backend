@@ -6,21 +6,23 @@ import com.myapp.chatbackend.Payload.UserRegistrationPayload;
 import com.myapp.chatbackend.Service.UserCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
+import java.security.Principal;
 
 //TODO: review Cross Origins
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api/v1/")
 public class UserCrudController {
 
 
-    private final UserCrudService userCrudService;
+    private UserCrudService userCrudService;
 
     public PasswordEncoder passwordEncoder;
 
@@ -49,14 +51,16 @@ public class UserCrudController {
 
 
     @PostMapping("login")
-    public String login(){
+    public String login(Principal principal){
+        System.out.println(principal.getName());
         return "done";
     }
 
     @GetMapping("user/get/{id}")
     public String getUserById(@PathVariable("id") int ID){
         try{
-        return userCrudService.getUserById(ID).toString();
+            System.out.println(userCrudService.getUserById(ID).toString());
+            return userCrudService.getUserById(ID).toString();
         }
         catch (EntityNotFoundException e){
             return String.format("{" +
@@ -83,7 +87,17 @@ public class UserCrudController {
     }
 
     @DeleteMapping("user/delete")
-    public boolean deleteUser(@RequestParam("id") int ID){
-        return userCrudService.deleteUser(ID);
+    public ResponseEntity<String> deleteUser(@RequestParam("id") int ID){
+        try {
+            userCrudService.deleteUser(ID);
+            return ResponseEntity.status(HttpStatus.OK).body("{" +
+                    "\"message\" : " +
+                    "\"Done\" }");
+        }
+        catch (EmptyResultDataAccessException e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(String.format("{" +
+                    "\"message\" : " +
+                    "\"user with ID %s not found\" }" , ID));
+        }
     }
 }

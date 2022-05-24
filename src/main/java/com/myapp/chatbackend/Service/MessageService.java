@@ -18,8 +18,8 @@ import java.util.Optional;
 public class MessageService {
 
 
-        private MessageRepository messageRepository;
-        private RoomService roomService;
+        private final MessageRepository messageRepository;
+        private final RoomService roomService;
 
     @Autowired
     public MessageService(MessageRepository messageRepository, RoomService roomService) {

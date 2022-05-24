@@ -1,6 +1,7 @@
 package com.myapp.chatbackend.Config;
 
 
+import com.myapp.chatbackend.Jwt.JwTokenVerifier;
 import com.myapp.chatbackend.Jwt.JwtUsernamePasswordAuthenticationFilter;
 import com.myapp.chatbackend.Service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .addFilter(new JwtUsernamePasswordAuthenticationFilter(authenticationManager()))
+                .addFilterAfter(new JwTokenVerifier(),JwtUsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/register").permitAll()
                 .antMatchers("/user/**").authenticated()

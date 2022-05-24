@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class MessagingController {
 
 
-    private SimpMessagingTemplate messagingTemplate;
-    private MessageService messageService;
-    private RoomService roomService;
+    private final SimpMessagingTemplate messagingTemplate;
+    private final MessageService messageService;
+    private final RoomService roomService;
 
     @Autowired
     public MessagingController(SimpMessagingTemplate messagingTemplate, MessageService messageService, RoomService roomService) {

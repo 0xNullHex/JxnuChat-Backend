@@ -22,6 +22,7 @@ public class UserCrudService{
     }
 
     public UserEntity getUserById(int Id){
+        System.out.println(Integer.toString(Id));
         return userRepository.getById(Id);
     }
 
