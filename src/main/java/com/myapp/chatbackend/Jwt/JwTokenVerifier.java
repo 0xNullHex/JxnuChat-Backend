@@ -17,7 +17,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Collection;
 
 public class JwTokenVerifier extends OncePerRequestFilter {
 
@@ -49,9 +48,9 @@ public class JwTokenVerifier extends OncePerRequestFilter {
             String username = body.getSubject();
 
             Authentication authentication = new UsernamePasswordAuthenticationToken(username,null,null);
-            System.out.println(authentication);
+//            System.out.println(authentication);
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            System.out.println(authentication);
+//            System.out.println(authentication);
         }
 
         catch (JwtException e){
