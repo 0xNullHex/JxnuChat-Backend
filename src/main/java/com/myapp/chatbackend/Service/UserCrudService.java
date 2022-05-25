@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service("userService")
 public class UserCrudService{
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Autowired
     public UserCrudService(UserRepository userRepository) {
@@ -38,9 +38,8 @@ public class UserCrudService{
         return true;
     }
 
-    public boolean deleteUser(int Id){
+    public void deleteUser(int Id){
         userRepository.deleteById(Id);
-        return true;
     }
 
 
