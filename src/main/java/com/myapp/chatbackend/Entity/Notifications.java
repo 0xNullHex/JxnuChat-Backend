@@ -20,4 +20,6 @@ public class Notifications {
         this.fromId = fromId;
         this.fromName = fromName;
     }
+
+
 }

@@ -16,9 +16,8 @@ import javax.persistence.EntityNotFoundException;
 import java.security.Principal;
 
 //TODO: review Cross Origins
-@CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/")
 public class UserCrudController {
 
 

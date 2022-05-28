@@ -6,9 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 
@@ -17,9 +15,12 @@ import java.util.Date;
 @Table(name = "chat_messages_table")
 @NoArgsConstructor @Setter @Getter @ToString
 public class MsgEntity {
+
+        @GeneratedValue(strategy = GenerationType.AUTO)
         @Id
         private Long id;
-        private Long msgId;
+
+        private String msgId;
         private Long fromId;
         private Long toId;
         private DeliveryStatus status;
@@ -29,7 +30,7 @@ public class MsgEntity {
         private Date date;
 
 
-        public MsgEntity(Long msgId, Long fromId, Long toId, DeliveryStatus status, String fromName, String toName, String message, Date date) {
+        public MsgEntity(String msgId, Long fromId, Long toId, DeliveryStatus status, String fromName, String toName, String message, Date date) {
                 this.msgId = msgId;
                 this.fromId = fromId;
                 this.toId = toId;

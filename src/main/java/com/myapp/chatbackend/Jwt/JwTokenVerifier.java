@@ -1,5 +1,6 @@
 package com.myapp.chatbackend.Jwt;
 
+import com.google.common.base.Strings;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;
@@ -26,7 +27,7 @@ public class JwTokenVerifier extends OncePerRequestFilter {
         String authorizationHeader = request.getHeader("Authorization");
 
         //check if authorization header is valid or not
-        if (StringUtils.isEmpty(authorizationHeader)|| StringUtils.isBlank(authorizationHeader)|| !authorizationHeader.startsWith("Bearer ")){
+        if (Strings.isNullOrEmpty(authorizationHeader) || !authorizationHeader.startsWith("Bearer ")){
             filterChain.doFilter(request,response);
             return;
         }
