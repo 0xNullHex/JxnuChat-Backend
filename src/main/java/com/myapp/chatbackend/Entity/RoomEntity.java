@@ -5,9 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
@@ -18,6 +16,7 @@ import javax.persistence.Table;
 @ToString
 public class RoomEntity {
         @Id
+        @GeneratedValue(strategy = GenerationType.AUTO)
         private Long id;
         private String msgId;
         private Long fromId;

@@ -32,11 +32,11 @@ public class MessagingController {
     @MessageMapping("/chat")
     public void processMessage(@Payload MsgEntity message) {
         var chatId = roomService.getMsgId(message.getFromId(), message.getToId(), true);
-        message.setMsgId(Long.valueOf(chatId.get()));
+        message.setMsgId(chatId.get());
 
         MsgEntity saved = messageService.save(message);
         messagingTemplate.convertAndSendToUser(
-                Long.toString(message.getToId()),"/queue/messages",
+                Long.toString(message.getToId()),"/private",
                 new Notifications(
                         saved.getId(),
                         saved.getFromId(),

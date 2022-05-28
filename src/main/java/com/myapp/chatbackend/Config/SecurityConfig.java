@@ -1,6 +1,7 @@
 package com.myapp.chatbackend.Config;
 
 
+import com.google.common.collect.ImmutableList;
 import com.myapp.chatbackend.Jwt.JwTokenVerifier;
 import com.myapp.chatbackend.Jwt.JwtUsernamePasswordAuthenticationFilter;
 import com.myapp.chatbackend.Service.CustomUserDetailsService;
@@ -15,6 +16,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 import javax.sql.DataSource;
 
@@ -50,6 +55,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
+    @Bean
+    public CorsFilter corsFilter() {
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        final CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.addAllowedOrigin("https://jxy.me");
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("OPTIONS");
+        config.addAllowedMethod("HEAD");
+        config.addAllowedMethod("GET");
+        config.addAllowedMethod("PUT");
+        config.addAllowedMethod("POST");
+        config.addAllowedMethod("DELETE");
+        config.addAllowedMethod("PATCH");
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -60,9 +83,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilter(new JwtUsernamePasswordAuthenticationFilter(authenticationManager()))
                 .addFilterAfter(new JwTokenVerifier(),JwtUsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers("/register").permitAll()
-                .antMatchers("/user/**").authenticated()
-                .anyRequest().authenticated();
+                .antMatchers("/**/register").permitAll()
+                .antMatchers("/**/user/**").authenticated()
+                .anyRequest().permitAll();
 
     }
 }
