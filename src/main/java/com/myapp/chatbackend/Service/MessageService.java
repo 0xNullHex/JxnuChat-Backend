@@ -28,7 +28,7 @@ public class MessageService {
     }
 
     public MsgEntity save(MsgEntity message) {
-            message.setStatus(DeliveryStatus.READ);
+            message.setStatus(DeliveryStatus.SENT);
             messageRepository.save(message);
             return message;
         }
@@ -43,7 +43,7 @@ public class MessageService {
             List<MsgEntity> messages = msgId.map(messageRepository::findByMsgId).orElse(new ArrayList<>());
 
             if(messages.size() > 0) {
-                updateStatuses(fromId, toId, DeliveryStatus.SENT);
+                updateStatuses(fromId, toId, DeliveryStatus.READ);
             }
 
             return messages;
