@@ -40,7 +40,8 @@ public class MessagingController {
                 new Notifications(
                         saved.getId(),
                         saved.getFromId(),
-                        saved.getFromName()));
+                        saved.getFromName(),
+                        saved.getMessage()));
     }
 
     @GetMapping("/messages/{fromId}/{toId}/count")
