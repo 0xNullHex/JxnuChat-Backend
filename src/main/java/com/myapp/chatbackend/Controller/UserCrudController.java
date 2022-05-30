@@ -71,7 +71,8 @@ public class UserCrudController {
     @GetMapping("user/get/user={username}")
     public String getUserByUsername(@PathVariable("username") String username){
         try{
-            return userCrudService.getUserByUsername(username).toString();
+            UserEntity userResult = userCrudService.getUserByUsername(username);
+            return "{\"id\":"+userResult.getId()+",\"username\":\""+userResult.getUsername()+"\"}";
         }
         catch (EntityNotFoundException e){
             return String.format("{" +
