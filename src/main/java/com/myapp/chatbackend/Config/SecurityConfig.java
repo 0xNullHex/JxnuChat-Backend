@@ -60,8 +60,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         final CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("https://jxy.me");
+        config.addAllowedOrigin("*");
         config.addAllowedHeader("*");
+        config.setAllowCredentials(true);
         config.addAllowedMethod("OPTIONS");
         config.addAllowedMethod("HEAD");
         config.addAllowedMethod("GET");
@@ -84,6 +85,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterAfter(new JwTokenVerifier(),JwtUsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/**/register").permitAll()
+                .antMatchers("/**/login").permitAll()
                 .antMatchers("/**/user/**").authenticated()
                 .anyRequest().permitAll();
 
