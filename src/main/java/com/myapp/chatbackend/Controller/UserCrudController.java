@@ -17,6 +17,7 @@ import java.security.Principal;
 
 //TODO: review Cross Origins
 @RestController
+@CrossOrigin
 @RequestMapping("/")
 public class UserCrudController {
 
@@ -50,8 +51,7 @@ public class UserCrudController {
 
 
     @PostMapping("login")
-    public String login(Principal principal){
-        System.out.println(principal.getName());
+    public String login(){
         return "done";
     }
 
