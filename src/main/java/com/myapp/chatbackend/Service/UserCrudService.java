@@ -1,10 +1,14 @@
 package com.myapp.chatbackend.Service;
 
 
+import com.myapp.chatbackend.Entity.MsgEntity;
 import com.myapp.chatbackend.Entity.UserEntity;
 import com.myapp.chatbackend.Interface.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service("userService")
 public class UserCrudService{
@@ -41,6 +45,12 @@ public class UserCrudService{
     public void deleteUser(int Id){
         userRepository.deleteById(Id);
     }
+
+    public List<UserEntity> getAllUsers(){
+        return userRepository.findAll();
+    }
+
+
 
 
 }

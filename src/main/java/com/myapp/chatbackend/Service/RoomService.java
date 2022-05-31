@@ -22,8 +22,10 @@ public class RoomService{
     public Optional<String> getMsgId(
             Long fromId, Long toId, boolean createIfNotExist) {
 
+        System.out.println(roomRepository.findAllByFromIdAndToId(fromId, toId));
+
         return roomRepository
-                .findByFromIdAndToId(fromId, toId)
+                .findAllByFromIdAndToId(fromId, toId)
                 .map(RoomEntity::getMsgId)
                 .or(() -> {
                     if(!createIfNotExist) {
