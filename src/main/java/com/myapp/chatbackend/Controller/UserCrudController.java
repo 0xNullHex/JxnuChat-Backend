@@ -100,4 +100,16 @@ public class UserCrudController {
                     "\"user with ID %s not found\" }" , ID));
         }
     }
+
+
+    @GetMapping("/user/all")
+    public ResponseEntity<?> getAllUsers(){
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(userCrudService.getAllUsers());
+        }
+        catch (DataIntegrityViolationException e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"message\":\"Error Occurred\"}");
+        }
+
+    }
 }
