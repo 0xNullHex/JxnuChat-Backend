@@ -13,21 +13,14 @@ import java.util.Objects;
 @Getter
 @ToString
 public class UserEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-
     @Column(unique=true)
-    @NonNull
     private String username;
-
     @Column()
-    @NonNull
     private String password;
-
     @Column(unique=true)
-    @NonNull
     private String email;
 
 

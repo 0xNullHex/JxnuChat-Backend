@@ -3,9 +3,6 @@ package com.myapp.chatbackend.Service;
 import com.myapp.chatbackend.Entity.DeliveryStatus;
 import com.myapp.chatbackend.Entity.MsgEntity;
 import com.myapp.chatbackend.Interface.MessageRepository;
-import org.hibernate.Criteria;
-import org.hibernate.query.Query;
-import org.hibernate.sql.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +31,7 @@ public class MessageService {
         }
 
         public long countNewMessages(Long fromId, Long toId) {
-            return messageRepository.countByFromIdAndToIdAndStatus(fromId, toId, DeliveryStatus.READ);
+            return messageRepository.countByFromIdAndToIdAndStatus(fromId, toId, DeliveryStatus.SENT);
         }
 
         public List<MsgEntity> findMessages(Long fromId, Long toId) {
@@ -53,7 +50,7 @@ public class MessageService {
             return messageRepository
                     .findById((id))
                     .map(message -> {
-                        message.setStatus(DeliveryStatus.SENT);
+                        message.setStatus(DeliveryStatus.READ);
                         return messageRepository.save(message);
                     })
                     .orElseThrow(() ->
