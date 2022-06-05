@@ -50,7 +50,4 @@ public class UserCrudService{
         return userRepository.findAll();
     }
 
-
-
-
 }

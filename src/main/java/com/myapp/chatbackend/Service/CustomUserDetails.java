@@ -8,7 +8,6 @@ import java.util.Collection;
 
 public class CustomUserDetails implements UserDetails {
 
-
     private UserEntity user;
 
     public CustomUserDetails(UserEntity user) {

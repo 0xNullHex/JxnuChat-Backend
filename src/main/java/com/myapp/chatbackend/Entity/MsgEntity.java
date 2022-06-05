@@ -19,7 +19,6 @@ public class MsgEntity {
         @GeneratedValue(strategy = GenerationType.AUTO)
         @Id
         private Long id;
-
         private String msgId;
         private Long fromId;
         private Long toId;
