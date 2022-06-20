@@ -22,5 +22,3 @@ For now the application is still under development, but some main objectives are
 ### 👨‍🔧 This Project was made by
 - **Mansour BOUCITTA 王胜利**
 	-> Github: [0xNullHex](https://github.com/0xNullHex)
-- **MUZAHIDUL ISLAM**
-	-> Github: [root-life28](https://github.com/root-life28)
