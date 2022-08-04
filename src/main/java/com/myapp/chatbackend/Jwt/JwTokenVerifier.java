@@ -36,7 +36,8 @@ public class JwTokenVerifier extends OncePerRequestFilter {
             String token = authorizationHeader.replace("Bearer ","");
 //            System.out.println(token);
 
-            String key = "JWTKEY";
+//          Enter Same Key
+            String key = "";
 
 
             Jws<Claims> claimsJws = Jwts.parserBuilder()
@@ -55,7 +56,7 @@ public class JwTokenVerifier extends OncePerRequestFilter {
         }
 
         catch (JwtException e){
-            throw new IllegalStateException("Invalid Token");
+            throw new JwtException("Invalid Token");
         }
 
         filterChain.doFilter(request,response);

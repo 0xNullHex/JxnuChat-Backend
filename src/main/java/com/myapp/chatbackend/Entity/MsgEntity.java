@@ -39,4 +39,6 @@ public class MsgEntity {
                 this.message = message;
                 this.date = date;
         }
+
+
 }

@@ -16,6 +16,8 @@ public class Notifications {
         private String message;
 
 
+
+
     public Notifications(Long id, Long fromId, String fromName, String message) {
         this.id = id;
         this.fromId = fromId;
