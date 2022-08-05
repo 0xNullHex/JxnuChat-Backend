@@ -7,7 +7,7 @@
 Just like all traditional **REST** apps structures, ***JxnuChat*** consists of the following parts
 - 💻 Front end → App's UI and direct interactive part with the user, Written in React Framework with JavaScript.
 - ⚙️ Back end → App's Behind the scene and where all magic happens, Crafted in Java's web Framework Spring.
-- 💾 Database → where all data accessed and stored on MySQL database.
+- 💾 Database → all data accessed and stored on MySQL database (can be changed).
 
 
 ### 🎯 Features
