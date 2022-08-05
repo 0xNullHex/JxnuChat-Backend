@@ -28,8 +28,10 @@ For now the application is still under development, but some main objectives are
     ```sh
         git clone https://github.com/0xNullHex/JxnuChat-Backend.git    
     ```
+    
     * Open cloned project in a code editor or ide and follow the path written below.
     ```src/main/resources/application.properties```
+    
     * Edit the "application.properties" file to your following preferences (Make sure you already setup a MySQL/MariaDB server).
     ```
     spring.datasource.url=jdbc:mariadb://{Your_DB_IP}:{DB_Port}/{DB_Name}?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC 
@@ -42,9 +44,12 @@ For now the application is still under development, but some main objectives are
     #For the first time start leave the option on create and after change it to update
     spring.jpa.hibernate.ddl-auto=create
     ```
+    
 2. Adding Custom Secure Key for JWT feature.
+
     * Access the class in the following path
     ``` src/main/java/com/myapp/chatbackend/Jwt/JwTokenVerifier.java ```
+    
     * Add your Secure Key in the key variable (Make sure it's a strong and long Key).
     ```Java
         try {
@@ -64,17 +69,17 @@ For now the application is still under development, but some main objectives are
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
     ```
+    
     * Access the class in the following path
     ``` src/main/java/com/myapp/chatbackend/Jwt/JwtUsernamePasswordAuthenticationFilter.java```
+    
     * Add Same Key here
     ```Java
         @Override
         protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
-        
     
     //      Enter Same Key here
             String key = " ";
-            
             
             String token= Jwts.builder()
                     .setSubject(authResult.getName())
