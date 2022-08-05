@@ -70,9 +70,12 @@ For now the application is still under development, but some main objectives are
     ```Java
         @Override
         protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
+        
     
     //      Enter Same Key here
             String key = " ";
+            
+            
             String token= Jwts.builder()
                     .setSubject(authResult.getName())
                             .setIssuedAt(new Date())
