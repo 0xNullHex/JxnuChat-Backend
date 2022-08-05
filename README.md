@@ -3,7 +3,7 @@
 
 ![](https://atomrace.com/blog/wp-content/uploads/2018/05/spring-boot-logo.png)
 
-### 🛠️ App components 
+## 🛠️ App components 
 ---
 Just like all traditional **REST** apps structures, ***JxnuChat*** consists of the following parts
 - 💻 Front end → App's UI and direct interactive part with the user, Written in React Framework with JavaScript.
@@ -11,7 +11,7 @@ Just like all traditional **REST** apps structures, ***JxnuChat*** consists of t
 - 💾 Database → all data accessed and stored on MySQL database (can be changed).
 
 
-### 🎯 Features
+## 🎯 Features
 ---
 For now the application is still under development, but some main objectives are archived as following.
 - [x] Supports Direct Messaging using Websockets.
@@ -21,7 +21,7 @@ For now the application is still under development, but some main objectives are
 - [x] User's profile.
 - [ ] Cross platform support (maybe in future ? 🤫 ) 
 
-### 📝 Get started
+## 📝 Get started
 ---
 1. Setting-Up Database Connectivity with Spring Back-end.
     * Clone the project to your local machine (make sure you have git installed).
