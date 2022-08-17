@@ -37,7 +37,7 @@ public class JwTokenVerifier extends OncePerRequestFilter {
 //            System.out.println(token);
 
 //          Enter Same Key
-            String key = "";
+            String key = "f*$B5H6d$8CcWpg5F58v$$q3*H4cH$mdpazC4^@S$L7#3%2jTQ5wVG%C!XRHC3n%k!snHQ";
 
 
             Jws<Claims> claimsJws = Jwts.parserBuilder()
@@ -56,7 +56,8 @@ public class JwTokenVerifier extends OncePerRequestFilter {
         }
 
         catch (JwtException e){
-            throw new JwtException("Invalid Token");
+            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+            response.getWriter().write("{\"message\":\"Invalid Token\"}");
         }
 
         filterChain.doFilter(request,response);

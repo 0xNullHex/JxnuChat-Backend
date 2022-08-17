@@ -51,6 +51,11 @@ public class UserCrudController {
 
 
 
+    @GetMapping("index")
+    public String index(){
+        return ("{\"message\":\"if you see this congrats you are Authenticated\"}");
+    }
+
     @GetMapping("user/get/{id}")
     public String getUserById(@PathVariable("id") int ID){
         try{

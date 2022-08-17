@@ -118,6 +118,7 @@ public class SecurityConfig {
                 .antMatchers("/**/register").permitAll()
                 .antMatchers("/**/login").permitAll()
                 .antMatchers("/**/user/**").authenticated()
+                .antMatchers("/index").authenticated()
                 .and()
                 .formLogin()
                 .loginProcessingUrl("/login")
